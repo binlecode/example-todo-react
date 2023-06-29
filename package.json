@@ -3,12 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
     "nanoid": "^3.1.20",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-scripts": "4.0.1",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
@@ -36,6 +33,9 @@
     ]
   },
   "devDependencies": {
+    "react-scripts": "4.0.1",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }
