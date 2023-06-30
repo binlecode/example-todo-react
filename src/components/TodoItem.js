@@ -98,13 +98,11 @@ const TodoItem = (props) => {
             <p className={todo.completed ? "w-full text-gray-500 line-through" : "w-full text-gray-500"}>
                 {todo.text}
             </p>
-            {/*{!todo.completed ?*/}
             <input id={todo.id} type="checkbox"
                    className="flex-no-shrink h-8 w-8 rounded-full hover:cursor-pointer checked:shadow-xl"
                    defaultChecked={todo.completed}
                    onChange={() => handleToggle(todo.id)}
             />
-            {/*: ""}*/}
             <button type="button"
                     className="flex-no-shrink p-2 ml-4 mr-2 border-2 rounded hover:text-white text-teal-500 border-teal-500 hover:bg-teal-500"
                     onClick={() => setEditing(true)}
