@@ -3,14 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
     "nanoid": "^3.1.20",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-scripts": "4.0.1",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "concurrently \"npm run start:css\" \"react-scripts start\"",
+    "start:css": "tailwindcss -o src/tailwind.css --watch",
+    "build": "yarn build:css && react-scripts build",
+    "build:css": "NODE_ENV=production tailwindcss -o src/tailwind.css -m",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -33,9 +39,8 @@
     ]
   },
   "devDependencies": {
-    "react-scripts": "4.0.1",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "tailwindcss": "^3.3.2",
+    "concurrently": "^8.2.0"
   }
 }
