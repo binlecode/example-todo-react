@@ -13,8 +13,8 @@ import FilterButton from "./FilterButton";
 //   every time <App /> component re-renders
 const FILTER_MAP = {
     All: () => true,
-    Active: task => !task.completed,
-    Completed: task => task.completed
+    Active: todo => !todo.completed,
+    Completed: todo => todo.completed
 };
 const FILTER_NAMES = Object.keys(FILTER_MAP);
 
@@ -47,7 +47,7 @@ const TodoApp = (props) => {
     };
 
     const toggleTodo = (id) => {
-        console.log('toggleTaskCompleted ' + id);
+        console.log('toggleTodoCompleted ' + id);
         setTodos(
             todos.map((todo) =>
                 // use object spread to update one key value pair
@@ -57,9 +57,10 @@ const TodoApp = (props) => {
     };
 
     const editTodo = (id, newText) => {
+        console.log('edit todo: ' + id + ', text: ' + newText);
         const editedTodos = todos.map(todo => {
             if (id === todo.id) {
-                return {...todo, name: newText};
+                return {...todo, text: newText};
             }
             return todo
         })
@@ -67,7 +68,7 @@ const TodoApp = (props) => {
     }
 
     const filterButtonList = FILTER_NAMES.map(filterName => (
-        <FilterButton key={filterName} name={filterName}
+        <FilterButton key={filterName} name={filterName} currentFilter={filter}
                       setFilter={setFilter}
         />
     ));
@@ -75,24 +76,31 @@ const TodoApp = (props) => {
     const filteredTodos = todos.filter(FILTER_MAP[filter]);
 
     return (
-        <div className="todoapp stack-large">
-            <h1>My Todos</h1>
-            <h2 id="list-heading">
-                {todos.length} {todos.length !== 1 ? 'tasks' : 'task'}
-                ,&nbsp;
-                {todos.filter(todo => !todo.completed).length} remaining
-            </h2>
+        <div
+            className="h-100 w-full flex items-center justify-center bg-teal-50 font-sans">
+            <div
+                className="bg-white rounded shadow p-6 m-4 w-full lg:w-8/11 lg:max-w-lg">
+                <h1 className="p-5 text-3xl text-center text-gray-500">My
+                    Todos</h1>
+                <h2 className="p-1 text-2xl text-gray-500">
+                    {todos.length} {todos.length !== 1 ? 'todos' : 'todo'}
+                    ,&nbsp;
+                    {todos.filter(todo => !todo.completed).length} remaining
+                </h2>
+                <hr className="text-gray-200"/>
 
-            <div className="filters btn-group stack-exception">
-                {filterButtonList}
+                <TodoAddForm addTodo={addTodo}/>
+
+                <div className="flex mt-4">
+                    {filterButtonList}
+                </div>
+
+                <TodoList todos={filteredTodos}
+                          deleteTodo={deleteTodo}
+                          toggleTodo={toggleTodo}
+                          editTodo={editTodo}
+                />
             </div>
-
-            <TodoList todos={filteredTodos}
-                      deleteTodo={deleteTodo}
-                      toggleTodo={toggleTodo}
-                      editTodo={editTodo}
-            />
-            <TodoAddForm addTodo={addTodo} todos={todos}/>
         </div>
     );
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './tailwind.css';
 import reportWebVitals from './reportWebVitals';
 
 import TodoApp from './components/TodoApp';

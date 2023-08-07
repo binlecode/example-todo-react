@@ -1,4 +1,3 @@
-
 This is a simple react app example with todo CRUDs.
 
 ## Run in local development mode
@@ -21,21 +20,36 @@ See https://facebook.github.io/create-react-app/docs/running-tests.
 It bundles React in production mode and optimizes assets for best performance.
 The build is minified and the filenames include the hashes.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+See the section
+about [deployment](https://facebook.github.io/create-react-app/docs/deployment)
+for more information.
 
-
-## bootstrap
+## project setup
 
 This project was bootstrapped with https://github.com/facebook/create-react-app.
 Basic design is based on:
 https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/React_todo_list_beginning,
-with components updated for better modularity.  
-
-
+with components updated for better modularity.
 
 To check and clean npm cache
+
 ```sh
 # check current cache size, this may take a while
 npm cache verify
 npm cache clean --force
 ```
+
+## tailwindcss
+
+Update webpage with tailwind css utility.
+
+```shell
+yarn add tailwindcss --dev
+# create tailwind config file
+yarn tailwind init
+```
+
+Also add concurrently to support concurrent css and source code watch
+at the same time in development mode.
+
+See: `scripts` section in [`package.json`](./package.json) file.
