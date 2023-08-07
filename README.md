@@ -1,4 +1,13 @@
+# example todo crud with reactjs framework
+
 This is a simple react app example with todo CRUDs.
+
+React has three core concepts:
+
+- components: code building blocks
+- props: data passed between components
+- state: underlying UI data that changes over time, as events, and processed by 
+  event handlers like hooks
 
 ## Run in local development mode
 
@@ -23,6 +32,15 @@ The build is minified and the filenames include the hashes.
 See the section
 about [deployment](https://facebook.github.io/create-react-app/docs/deployment)
 for more information.
+
+## code formatter
+
+Use prettier to format source code.
+
+```shell
+yarn prettier . --check
+yarn prettier . --write
+```
 
 ## project setup
 
