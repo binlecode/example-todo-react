@@ -6,14 +6,19 @@ React has three core concepts:
 
 - components: code building blocks
 - props: data passed between components
-- state: underlying UI data that changes over time, as events, and processed by 
+- state: underlying UI data that changes over time, as events, and processed by
   event handlers like hooks
 
 ## Run in local development mode
 
-Node version 12+.
+Node version 16, 18, 20.
 
-`yarn start` runs the app in the development mode.
+```sh
+nvm use 16
+rm -rf node_modules
+yarn install
+yarn start
+```
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
