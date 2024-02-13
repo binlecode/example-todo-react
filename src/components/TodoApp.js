@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TodoList from "./TodoList";
 import TodoAddForm from "./TodoAddForm";
 import FilterButton from "./FilterButton";
+import TodoAPI from "../TodoAPI";
 
 // In React, the TodoApp.js is considered as a component.
 // The App component serves as the entry point and the main container for other
@@ -18,8 +19,13 @@ const FILTER_MAP = {
 };
 const FILTER_NAMES = Object.keys(FILTER_MAP);
 
-const TodoApp = (props) => {
-  const [todos, setTodos] = useState(props.todos);
+const TodoApp = () => {
+  const [todos, setTodos] = useState([]);
+
+  // fetch todos from API for initial render
+  useEffect(() => {
+    TodoAPI.read().then((data) => setTodos(data));
+  }, []);
 
   // configure todos list filter
   const [filter, setFilter] = useState("All");
@@ -37,15 +43,23 @@ const TodoApp = (props) => {
       text,
       completed: false,
     };
+    // call API to create new todo
+    TodoAPI.create(newTodo);
     setTodos([...todos, newTodo]);
   };
 
   const deleteTodo = (id) => {
+    // call API to delete todo
+    TodoAPI.delete(id);
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
   const toggleTodo = (id) => {
     console.log("toggleTodoCompleted " + id);
+    // call API to update todo
+    const todo = todos.find((todo) => todo.id === id);
+    TodoAPI.update(id, { ...todo, completed: !todo.completed });
+
     setTodos(
       todos.map((todo) =>
         // use object spread to update one key value pair
@@ -62,6 +76,10 @@ const TodoApp = (props) => {
       }
       return todo;
     });
+    // call API to update todo
+    const todo = editedTodos.find((todo) => todo.id === id);
+    TodoAPI.update(id, todo);
+
     setTodos(editedTodos);
   };
 

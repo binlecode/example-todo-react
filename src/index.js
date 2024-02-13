@@ -5,15 +5,9 @@ import reportWebVitals from "./reportWebVitals";
 
 import TodoApp from "./components/TodoApp";
 
-const DATA = [
-  { id: "todo-0", text: "Eat", completed: true },
-  { id: "todo-1", text: "Sleep", completed: false },
-  { id: "todo-2", text: "Repeat", completed: false },
-];
-
 ReactDOM.render(
   <React.StrictMode>
-    <TodoApp todos={DATA} />
+    <TodoApp />
   </React.StrictMode>,
   document.getElementById("root"),
 );

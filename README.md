@@ -2,19 +2,16 @@
 
 This is a simple react app example with todo CRUDs.
 
-React has three core concepts:
-
-- components: code building blocks
-- props: data passed between components
-- state: underlying UI data that changes over time, as events, and processed by
-  event handlers like hooks
+- plain javascript
+- standard react components, props, and state
+- json-server as a mock backend for CRUD operations
 
 ## Run in local development mode
 
 Node version 16, 18, 20.
 
 ```sh
-nvm use 16
+nvm use 18
 rm -rf node_modules
 yarn install
 yarn start
@@ -60,6 +57,17 @@ To check and clean npm cache
 # check current cache size, this may take a while
 npm cache verify
 npm cache clean --force
+```
+
+## json-server
+
+Use json-server to mock backend for CRUD operations.
+
+```sh
+yarn add json-server --dev
+
+# start json-server with db.json as file database
+yarn json-server --watch db.json --port 3001
 ```
 
 ## tailwindcss

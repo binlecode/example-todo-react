@@ -1,0 +1,19 @@
+{
+  "todos": [
+    {
+      "id": "todo-1",
+      "text": "Take a nap",
+      "completed": true
+    },
+    {
+      "id": "todo-2",
+      "text": "Repeat",
+      "completed": false
+    },
+    {
+      "id": 1707847302865,
+      "text": "fix react code",
+      "completed": false
+    }
+  ]
+}
