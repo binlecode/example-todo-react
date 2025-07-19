@@ -1,5 +1,5 @@
-# Build stage - multi-arch support
-FROM --platform=$BUILDPLATFORM node:22-alpine AS build
+# Build stage
+FROM node:22-alpine AS build
 
 WORKDIR /app
 
@@ -15,8 +15,8 @@ COPY . .
 # Build the application
 RUN npm run build
 
-# Production stage - multi-arch support
-FROM --platform=$TARGETPLATFORM nginx:alpine
+# Production stage
+FROM nginx:alpine
 
 # Copy built files to nginx
 COPY --from=build /app/dist /usr/share/nginx/html
