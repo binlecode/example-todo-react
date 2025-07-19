@@ -3,9 +3,11 @@
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
+
 Modern React 18 todo application with Vite, TypeScript-ready, featuring dark mode, responsive design, and modern UI patterns.
 
 ## 🚀 Current Stack
+
 - **Frontend**: React 18.3.1 with functional components and hooks
 - **Build Tool**: Vite 5.4.9 (migrated from Create React App)
 - **Styling**: Tailwind CSS 3.4.14 with custom design tokens and dark mode
@@ -15,6 +17,7 @@ Modern React 18 todo application with Vite, TypeScript-ready, featuring dark mod
 - **Linting**: ESLint 9.x with modern React rules
 
 ## 📁 Project Structure
+
 ```
 src/
 ├── components/          # React components (JSX format)
@@ -36,6 +39,7 @@ src/
 ## 🛠️ Development Commands
 
 ### Setup & Development
+
 ```bash
 yarn install          # Install dependencies
 yarn dev             # Start Vite dev server (port 3000)
@@ -43,6 +47,7 @@ yarn jsonserver      # Start mock backend (port 3001)
 ```
 
 ### Build & Testing
+
 ```bash
 yarn build           # Build for production to /build
 yarn test            # Run tests with Vitest
@@ -52,6 +57,7 @@ yarn prettier        # Format code with Prettier
 ```
 
 ### Development Workflow
+
 1. Start backend: `yarn jsonserver`
 2. Start frontend: `yarn dev`
 3. Open: http://localhost:3000
@@ -59,6 +65,7 @@ yarn prettier        # Format code with Prettier
 ## 🎯 Key Features
 
 ### ✅ Completed Features
+
 - **React 18** with new root API
 - **Vite** build system (replaced CRA)
 - **Dark Mode** with system preference detection
@@ -69,6 +76,7 @@ yarn prettier        # Format code with Prettier
 - **Modern testing** setup with Vitest
 
 ### 🎨 UI/UX Features
+
 - **Gradient backgrounds** with dark/light mode
 - **Smooth animations** (fade-in, slide-up, scale-in)
 - **Responsive design** for all screen sizes
@@ -77,17 +85,20 @@ yarn prettier        # Format code with Prettier
 - **Card-based layout** with soft shadows
 
 ## 📊 API Endpoints
+
 - **Base**: `http://localhost:3001/todos`
 - **CRUD**: GET, POST, PUT, DELETE
 - **Data Format**: `{ id: string|number, text: string, completed: boolean }`
 
 ## 🌙 Dark Mode
+
 - **Automatic detection** via `prefers-color-scheme`
 - **Manual toggle** with localStorage persistence
 - **Smooth transitions** between themes
 - **Proper contrast ratios** throughout
 
 ## 🏗️ Build Configuration
+
 - **Vite** for fast development and building
 - **Tailwind CSS** with custom color palette and animations
 - **ESLint** with React hooks and accessibility rules
@@ -95,11 +106,13 @@ yarn prettier        # Format code with Prettier
 - **TypeScript** ready for gradual migration
 
 ## 🧪 Testing Setup
+
 - **Vitest** for fast unit testing
 - **React Testing Library** for component testing
 - **Test setup** configured for Vite/React
 
 ## 🔄 Migration Summary
+
 - **React**: 17.0.1 → 18.3.1
 - **Build**: CRA → Vite (10x faster builds)
 - **Styling**: Basic Tailwind → Modern design system
@@ -108,6 +121,7 @@ yarn prettier        # Format code with Prettier
 - **UI**: Basic → Modern with dark mode
 
 ## 🚀 Next Steps (Optional)
+
 1. **TypeScript migration**: Rename .jsx → .tsx files
 2. **State management**: Add Zustand for complex state
 3. **API**: Replace JSON-server with real backend

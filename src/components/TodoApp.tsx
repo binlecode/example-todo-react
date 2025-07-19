@@ -23,13 +23,16 @@ const TodoApp: React.FC = () => {
 
   // Dark mode toggle
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    const savedTheme = localStorage.getItem("theme");
+    if (
+      savedTheme === "dark" ||
+      (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
       setIsDarkMode(true);
-      document.documentElement.classList.add('dark');
+      document.documentElement.classList.add("dark");
     } else {
       setIsDarkMode(false);
-      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.remove("dark");
     }
   }, []);
 
@@ -37,11 +40,11 @@ const TodoApp: React.FC = () => {
     const newDarkMode = !isDarkMode;
     setIsDarkMode(newDarkMode);
     if (newDarkMode) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
     } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
     }
   };
 
@@ -127,27 +130,40 @@ const TodoApp: React.FC = () => {
           <h1 className="text-4xl font-bold text-gray-800 dark:text-white animate-fade-in">
             My Todos
           </h1>
-          <ThemeToggle isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
+          <ThemeToggle
+            isDarkMode={isDarkMode}
+            toggleDarkMode={toggleDarkMode}
+          />
         </div>
 
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-soft-lg p-6 md:p-8 animate-scale-in">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 space-y-2 sm:space-y-0">
             <div className="text-sm font-medium text-gray-600 dark:text-gray-300">
-              <span className="text-2xl font-bold text-gray-800 dark:text-white">{todos.length}</span>
-              {' '}<span className="text-gray-500 dark:text-gray-400">{todos.length === 1 ? 'task' : 'tasks'}</span>
+              <span className="text-2xl font-bold text-gray-800 dark:text-white">
+                {todos.length}
+              </span>{" "}
+              <span className="text-gray-500 dark:text-gray-400">
+                {todos.length === 1 ? "task" : "tasks"}
+              </span>
             </div>
             <div className="text-sm text-gray-600 dark:text-gray-300">
-              <span className="text-green-600 dark:text-green-400 font-semibold">{completedCount}</span>
-              {' '}completed,{' '}
-              <span className="text-blue-600 dark:text-blue-400 font-semibold">{remainingCount}</span>
-              {' '}remaining
+              <span className="text-green-600 dark:text-green-400 font-semibold">
+                {completedCount}
+              </span>{" "}
+              completed,{" "}
+              <span className="text-blue-600 dark:text-blue-400 font-semibold">
+                {remainingCount}
+              </span>{" "}
+              remaining
             </div>
           </div>
 
           <div className="space-y-6">
             <TodoAddForm addTodo={addTodo} />
-            
-            <div className="flex flex-wrap gap-2 animate-slide-up">{filterButtonList}</div>
+
+            <div className="flex flex-wrap gap-2 animate-slide-up">
+              {filterButtonList}
+            </div>
 
             <TodoList
               todos={filteredTodos}
