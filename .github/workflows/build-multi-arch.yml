@@ -1,4 +1,4 @@
-name: Build Linux Image
+name: Build and Test
 
 on:
   push:
@@ -7,13 +7,28 @@ on:
     branches: [main, develop]
 
 jobs:
-  build-linux:
-    name: Build Linux Image
+  test-and-build:
+    name: Test and Build
     runs-on: ubuntu-latest
     
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Run tests
+        run: npm run test:ci
+        
+      - name: Build application
+        run: npm run build
+        
       - name: Build Docker image
-        run: docker build -t todo-app:latest .
+        run: docker build -t todo-app:test .
