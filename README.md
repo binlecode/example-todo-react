@@ -1,86 +1,164 @@
-# example todo crud with reactjs framework
+# Modern React Todo App with TypeScript
 
-This is a simple react app example with todo CRUDs.
+A fully modernized React todo application featuring TypeScript, Vite, Tailwind CSS, and Docker support.
 
-- plain javascript
-- standard react components, props, and state
-- json-server as a mock backend for CRUD operations
+## 🚀 Features
 
-## Run in local development mode
+- **Modern React 18** with TypeScript and functional components
+- **Vite** build system for fast development and optimized builds
+- **Tailwind CSS 3.4** with dark mode support
+- **TypeScript** for type safety and better development experience
+- **Docker** containerization with multi-stage builds
+- **GitHub Actions** CI/CD pipeline
+- **Responsive design** with smooth animations
+- **Dark/light mode** with system preference detection
 
-Node version 16, 18, 20.
+## 📋 Tech Stack
 
-```sh
-nvm use 18
-rm -rf node_modules
-yarn install
-yarn start
+- **Frontend**: React 18.3.1, TypeScript 5.8.3
+- **Build Tool**: Vite 5.4.9
+- **Styling**: Tailwind CSS 3.4.14
+- **Testing**: Vitest 2.1.3
+- **Linting**: ESLint 9.13.0
+- **Backend**: json-server (mock API)
+- **Container**: Docker with nginx:alpine
+
+## 🛠️ Development Setup
+
+### Prerequisites
+- Node.js 22+ (LTS)
+- npm
+
+### Quick Start
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Start mock backend (in another terminal)
+npm run jsonserver
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Access the app at `http://localhost:3000`
 
-Auto-reload is enabled in dev mode by react-scripts.
-You will also see any lint errors in the console.
+## 🧪 Available Scripts
 
-`yarn test` launches the test runner in the interactive watch mode.
-See https://facebook.github.io/create-react-app/docs/running-tests.
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production |
+| `npm run preview` | Preview production build |
+| `npm run lint` | Run ESLint |
+| `npm run type-check` | Run TypeScript compiler |
+| `npm test` | Run tests |
+| `npm run test:ci` | Run tests in CI mode |
+| `npm run jsonserver` | Start mock backend |
+| `npm run prettier` | Format code |
+| `npm run prettier:check` | Check code formatting |
 
-## build and deploy
+## 🐳 Docker Usage
 
-`yarn build` builds the app for production to the `build` folder.
-It bundles React in production mode and optimizes assets for best performance.
-The build is minified and the filenames include the hashes.
+### Build and run locally:
+```bash
+# Build the image
+docker build -t todo-app:latest .
 
-See the section
-about [deployment](https://facebook.github.io/create-react-app/docs/deployment)
-for more information.
+# Run the container
+docker run -d -p 8080:80 todo-app:latest
 
-## code formatter
-
-Use prettier to format source code.
-
-```shell
-yarn prettier . --check
-yarn prettier . --write
+# Access at http://localhost:8080
 ```
 
-## project setup
+### Development with Docker:
+```bash
+# Build for ARM64 (Mac M4)
+docker build --platform linux/arm64 -t todo-app:latest .
+```
 
-This project was bootstrapped with https://github.com/facebook/create-react-app.
-Basic design is based on:
-https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/React_todo_list_beginning,
-with components updated for better modularity.
+## 🌙 Dark Mode
 
-To check and clean npm cache
+The app includes a dark mode toggle that:
+- Respects system preferences
+- Saves user preference to localStorage
+- Provides smooth transitions
 
-```sh
-# check current cache size, this may take a while
+## 🏗️ Project Structure
+
+```
+src/
+├── components/          # React components
+│   ├── TodoApp.tsx      # Main app component
+│   ├── TodoList.tsx     # Todo list display
+│   ├── TodoItem.tsx     # Individual todo item
+│   ├── TodoAddForm.tsx  # Add todo form
+│   ├── FilterButton.tsx # Filter buttons
+│   └── ThemeToggle.tsx  # Dark mode toggle
+├── types.ts             # TypeScript interfaces
+├── TodoAPI.ts           # API client
+└── main.tsx            # Entry point
+```
+
+## 🔄 CI/CD
+
+GitHub Actions automatically run on PR:
+- ✅ Linting with ESLint
+- ✅ Type checking with TypeScript
+- ✅ Testing with Vitest
+- ✅ Build verification
+- ✅ Docker image build
+
+## 🚀 Deployment
+
+### Manual deployment:
+```bash
+npm run build
+# Serve dist/ folder with any static server
+```
+
+### Docker deployment:
+```bash
+docker run -d -p 80:80 todo-app:latest
+```
+
+## 📱 Responsive Design
+
+The app is fully responsive and works on:
+- Desktop (1200px+)
+- Tablet (768px+)
+- Mobile (320px+)
+
+## 🔧 Development Tips
+
+### Clear npm cache:
+```bash
 npm cache verify
 npm cache clean --force
 ```
 
-## json-server
-
-Use json-server to mock backend for CRUD operations.
-
-```sh
-yarn add json-server --dev
-
-# start json-server with db.json as file database
-yarn json-server --watch db.json --port 3001
+### Environment variables:
+Create `.env` file for custom configuration:
+```bash
+VITE_API_URL=http://localhost:3001/todos
 ```
 
-## tailwindcss
+## 📝 Backend API
 
-Update webpage with tailwind css utility.
+The app uses json-server for CRUD operations:
+- **GET** `/todos` - Get all todos
+- **POST** `/todos` - Create new todo
+- **PUT** `/todos/:id` - Update todo
+- **DELETE** `/todos/:id` - Delete todo
 
-```shell
-yarn add tailwindcss --dev
-# create tailwind config file
-yarn tailwind init
-```
+## 🤝 Contributing
 
-Also add concurrently to support concurrent css and source code watch
-at the same time in development mode.
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Run tests: `npm test`
+5. Submit a pull request
 
-See: `scripts` section in [`package.json`](./package.json) file.
+## 📄 License
+
+MIT License - feel free to use this project for your own learning and development.
