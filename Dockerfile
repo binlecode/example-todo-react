@@ -1,5 +1,5 @@
-# Build stage
-FROM node:22-alpine AS build
+# Build stage - multi-arch support
+FROM --platform=$BUILDPLATFORM node:22-alpine AS build
 
 WORKDIR /app
 
@@ -15,14 +15,17 @@ COPY . .
 # Build the application
 RUN npm run build
 
-# Production stage
-FROM nginx:alpine
+# Production stage - multi-arch support
+FROM --platform=$TARGETPLATFORM nginx:alpine
 
 # Copy built files to nginx
 COPY --from=build /app/dist /usr/share/nginx/html
 
 # Copy nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Add curl for health check
+RUN apk add --no-cache curl
 
 # Expose port 80
 EXPOSE 80
