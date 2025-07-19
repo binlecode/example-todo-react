@@ -20,20 +20,21 @@ Modern React 18 todo application with Vite, TypeScript-ready, featuring dark mod
 
 ```
 src/
-├── components/          # React components (JSX format)
-│   ├── TodoApp.jsx     # Main container with dark mode state
-│   ├── TodoList.jsx    # Renders todo list with empty state
-│   ├── TodoItem.jsx    # Individual todo with edit/delete/toggle
-│   ├── TodoAddForm.jsx # Input form for adding new todos
-│   ├── FilterButton.jsx # Filter buttons (All/Active/Completed)
-│   └── ThemeToggle.jsx # Dark mode toggle component
+├── components/          # React components (TSX format)
+│   ├── TodoApp.tsx     # Main container with dark mode state
+│   ├── TodoList.tsx    # Renders todo list with empty state
+│   ├── TodoItem.tsx    # Individual todo with edit/delete/toggle
+│   ├── TodoAddForm.tsx # Input form for adding new todos
+│   ├── FilterButton.tsx # Filter buttons (All/Active/Completed)
+│   └── ThemeToggle.tsx # Dark mode toggle component
 ├── __tests__/          # Test files
-│   └── TodoAPI.test.jsx
+│   └── TodoAPI.test.tsx
 ├── test/               # Test configuration
 │   └── setup.js
-├── TodoAPI.js          # REST API client (ES modules)
-├── main.jsx            # React 18 root rendering (Vite entry)
-└── tailwind.css        # Generated Tailwind CSS with all utilities
+├── TodoAPI.ts          # REST API client (TypeScript)
+├── types.ts            # TypeScript interfaces
+├── main.tsx            # React 18 root rendering (Vite entry)
+└── tailwind.css        # Tailwind CSS with all utilities
 ```
 
 ## 🛠️ Development Commands
@@ -41,26 +42,38 @@ src/
 ### Setup & Development
 
 ```bash
-yarn install          # Install dependencies
-yarn dev             # Start Vite dev server (port 3000)
-yarn jsonserver      # Start mock backend (port 3001)
+npm install          # Install dependencies
+npm run dev          # Start Vite dev server (port 3000)
+npm run jsonserver   # Start mock backend (port 3001)
 ```
 
 ### Build & Testing
 
 ```bash
-yarn build           # Build for production to /build
-yarn test            # Run tests with Vitest
-yarn preview         # Preview production build
-yarn lint            # Run ESLint
-yarn prettier        # Format code with Prettier
+npm run build        # Build for production to /dist
+npm run test         # Run tests with Vitest
+npm run preview      # Preview production build
+npm run lint         # Run ESLint (required before commit)
+npm run type-check   # Run TypeScript compiler
+npm run prettier     # Format code with Prettier
 ```
 
 ### Development Workflow
 
-1. Start backend: `yarn jsonserver`
-2. Start frontend: `yarn dev`
-3. Open: http://localhost:3000
+1. Start backend: `npm run jsonserver`
+2. Start frontend: `npm run dev`
+3. Run linting: `npm run lint` (required before commit)
+4. Run type checking: `npm run type-check`
+5. Open: http://localhost:3000
+
+### Pre-commit Checklist
+
+```bash
+npm run lint         # ✅ ESLint check
+npm run type-check   # ✅ TypeScript check
+npm run test:ci      # ✅ Test suite
+npm run build        # ✅ Production build
+```
 
 ## 🎯 Key Features
 
