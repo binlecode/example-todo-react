@@ -1,86 +1,66 @@
-# example todo crud with reactjs framework
+# React Todo App
 
-This is a simple react app example with todo CRUDs.
+A modern React todo application with TypeScript, Vite, and Docker support.
 
-- plain javascript
-- standard react components, props, and state
-- json-server as a mock backend for CRUD operations
+## Tech Stack
 
-## Run in local development mode
+- **Frontend**: React 18.3.1, TypeScript 5.8.3
+- **Build**: Vite 5.4.9
+- **Styling**: Tailwind CSS 3.4.14 with dark mode
+- **Testing**: Vitest 2.1.3
+- **Backend**: json-server (mock API)
+- **Container**: Docker with nginx:alpine
 
-Node version 16, 18, 20.
+## Quick Start
 
-```sh
-nvm use 18
-rm -rf node_modules
-yarn install
-yarn start
+```bash
+# Install dependencies
+npm install
+
+# Start development
+npm run dev
+
+# Start mock backend
+npm run jsonserver
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Scripts
 
-Auto-reload is enabled in dev mode by react-scripts.
-You will also see any lint errors in the console.
+| Command              | Purpose            |
+| -------------------- | ------------------ |
+| `npm run dev`        | Development server |
+| `npm run build`      | Production build   |
+| `npm run lint`       | ESLint             |
+| `npm run type-check` | TypeScript         |
+| `npm test`           | Tests              |
+| `npm run jsonserver` | Mock API           |
 
-`yarn test` launches the test runner in the interactive watch mode.
-See https://facebook.github.io/create-react-app/docs/running-tests.
+## Docker
 
-## build and deploy
-
-`yarn build` builds the app for production to the `build` folder.
-It bundles React in production mode and optimizes assets for best performance.
-The build is minified and the filenames include the hashes.
-
-See the section
-about [deployment](https://facebook.github.io/create-react-app/docs/deployment)
-for more information.
-
-## code formatter
-
-Use prettier to format source code.
-
-```shell
-yarn prettier . --check
-yarn prettier . --write
+```bash
+# Build and run
+docker build -t todo-app . && docker run --rm -p 8080:80 todo-app
 ```
 
-## project setup
+## Project Structure
 
-This project was bootstrapped with https://github.com/facebook/create-react-app.
-Basic design is based on:
-https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/React_todo_list_beginning,
-with components updated for better modularity.
-
-To check and clean npm cache
-
-```sh
-# check current cache size, this may take a while
-npm cache verify
-npm cache clean --force
+```
+src/
+├── components/          # React components
+│   ├── TodoApp.tsx      # Main app
+│   ├── TodoList.tsx     # List display
+│   ├── TodoItem.tsx     # Individual item
+│   ├── TodoAddForm.tsx  # Add form
+│   ├── FilterButton.tsx # Filters
+│   └── ThemeToggle.tsx  # Dark mode
+├── types.ts             # TypeScript interfaces
+├── TodoAPI.ts           # API client
+└── main.tsx            # Entry point
 ```
 
-## json-server
+## API Endpoints
 
-Use json-server to mock backend for CRUD operations.
-
-```sh
-yarn add json-server --dev
-
-# start json-server with db.json as file database
-yarn json-server --watch db.json --port 3001
-```
-
-## tailwindcss
-
-Update webpage with tailwind css utility.
-
-```shell
-yarn add tailwindcss --dev
-# create tailwind config file
-yarn tailwind init
-```
-
-Also add concurrently to support concurrent css and source code watch
-at the same time in development mode.
-
-See: `scripts` section in [`package.json`](./package.json) file.
+- **GET** `/todos` - Get all
+- **POST** `/todos` - Create
+- **PUT** `/todos/:id` - Update
+- **DELETE** `/todos/:id` - Delete
