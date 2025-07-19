@@ -1,7 +1,9 @@
+import { Todo } from './types';
+
 const API_URL = "http://localhost:3001/todos";
 
 // Create a new todo
-async function createTodo(todo) {
+async function createTodo(todo: Omit<Todo, 'id'>): Promise<Todo> {
   const response = await fetch(API_URL, {
     method: "POST",
     headers: {
@@ -13,13 +15,13 @@ async function createTodo(todo) {
 }
 
 // Read all todos
-async function readTodos() {
+async function readTodos(): Promise<Todo[]> {
   const response = await fetch(API_URL);
   return response.json();
 }
 
 // Update a todo
-async function updateTodo(id, updatedTodo) {
+async function updateTodo(id: string | number, updatedTodo: Todo): Promise<Todo> {
   const response = await fetch(`${API_URL}/${id}`, {
     method: "PUT",
     headers: {
@@ -31,7 +33,7 @@ async function updateTodo(id, updatedTodo) {
 }
 
 // Delete a todo
-async function deleteTodo(id) {
+async function deleteTodo(id: string | number): Promise<Todo> {
   const response = await fetch(`${API_URL}/${id}`, {
     method: "DELETE",
   });
