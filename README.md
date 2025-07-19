@@ -62,7 +62,7 @@ Access the app at `http://localhost:3000`
 
 ### Build and run locally:
 ```bash
-# Build the image
+# Build the image (supports Linux/AMD64 and ARM64)
 docker build -t todo-app:latest .
 
 # Run the container
@@ -71,10 +71,17 @@ docker run -d -p 8080:80 todo-app:latest
 # Access at http://localhost:8080
 ```
 
-### Development with Docker:
+### Multi-platform support:
 ```bash
-# Build for ARM64 (Mac M4)
-docker build --platform linux/arm64 -t todo-app:latest .
+# Build for specific platforms
+# Linux/AMD64 (Intel, AMD)
+docker build --platform linux/amd64 -t todo-app:amd64 .
+
+# Linux/ARM64 (Apple Silicon M1/M2/M3/M4)
+docker build --platform linux/arm64 -t todo-app:arm64 .
+
+# Buildx for multi-platform (experimental)
+docker buildx build --platform linux/amd64,linux/arm64 -t todo-app:multi .
 ```
 
 ## 🌙 Dark Mode
