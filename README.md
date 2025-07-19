@@ -60,28 +60,21 @@ Access the app at `http://localhost:3000`
 
 ## 🐳 Docker Usage
 
-### Build and run locally:
+### Quick test with temporary container:
 ```bash
-# Build the image (supports Linux/AMD64 and ARM64)
-docker build -t todo-app:latest .
-
-# Run the container
-docker run -d -p 8080:80 todo-app:latest
+# Build and run in one command
+docker build -t todo-app-react:latest . && docker run --rm -p 8080:80 todo-app-react:latest
 
 # Access at http://localhost:8080
 ```
 
-### Multi-platform support:
+### Multi-platform builds:
 ```bash
-# Build for specific platforms
-# Linux/AMD64 (Intel, AMD)
-docker build --platform linux/amd64 -t todo-app:amd64 .
+# Linux/AMD64
+docker build --platform linux/amd64 -t todo-app-react:amd64 .
 
-# Linux/ARM64 (Apple Silicon M1/M2/M3/M4)
-docker build --platform linux/arm64 -t todo-app:arm64 .
-
-# Buildx for multi-platform (experimental)
-docker buildx build --platform linux/amd64,linux/arm64 -t todo-app:multi .
+# Linux/ARM64 (Apple Silicon)
+docker build --platform linux/arm64 -t todo-app-react:arm64 .
 ```
 
 ## 🌙 Dark Mode
@@ -126,7 +119,7 @@ npm run build
 
 ### Docker deployment:
 ```bash
-docker run -d -p 80:80 todo-app:latest
+docker run -d -p 80:80 todo-app-react:latest
 ```
 
 ## 📱 Responsive Design
