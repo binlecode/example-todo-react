@@ -11,8 +11,13 @@
       "completed": false
     },
     {
-      "id": 1707847302865,
+      "id": "1707847302865",
       "text": "fix react code",
+      "completed": true
+    },
+    {
+      "id": 1752979033626,
+      "text": "learn claude code",
       "completed": false
     }
   ]

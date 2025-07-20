@@ -1,5 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
-import { TodoItemProps } from "../types";
+import { Todo } from "../types";
+
+interface TodoItemProps {
+  todo: Todo;
+  deleteTodo: (id: string | number) => void;
+  toggleTodo: (id: string | number) => void;
+  editTodo: (id: string | number, newText: string) => void;
+}
 
 const TodoItem: React.FC<TodoItemProps> = ({
   todo,
@@ -26,49 +33,23 @@ const TodoItem: React.FC<TodoItemProps> = ({
     setNewText(e.target.value);
   };
 
-  // catch esc key to exit editing mode without saving
-  // ! NOTE: for some reason onKeyPress does not capture escape key (code 27)
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.keyCode === 27) {
-      if (isEditing) {
-        setEditing(false);
-      }
+      setEditing(false);
     }
   };
 
   const handleEditSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    // always good practice to prevent default event from form submission
     e.preventDefault();
     editTodo(todo.id, newText);
-    // reset new text value
-    // setNewText('');
-    // exit editing mode
     setEditing(false);
   };
 
-  // Set current state to given value but return its previous state.
-  // ! useEffect() takes a function (callback) as an argument and invokes
-  // it after main flow, aka the 'return' statement below
-  function usePrevious<T>(value: T): T | undefined {
-    const ref = useRef<T | undefined>();
-    useEffect(() => {
-      ref.current = value;
-    });
-    return ref.current;
-  }
-
-  const wasEditing = usePrevious(isEditing);
-
-  // * this function is executed **after** the component renders
-  // ! NOTE the second argument is a list of values useEffect() depends on
   useEffect(() => {
-    if (!wasEditing && isEditing) {
+    if (isEditing) {
       editFieldRef.current?.focus();
     }
-    if (wasEditing && !isEditing) {
-      editButtonRef.current?.focus();
-    }
-  }, [isEditing, wasEditing]);
+  }, [isEditing]);
 
   const editingTemplate = (
     <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-4 mb-3 animate-slide-up">
